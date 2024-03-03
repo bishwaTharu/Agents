@@ -77,7 +77,8 @@ class SECTools:
         retriever = FAISS.from_documents(
             docs,
             OllamaEmbeddings(
-                model="openharnes", base_url=os.environ["OllAMA_BASE_URL"]
+                model=os.environ["OLLAMA_BASE_MODEL"],
+                base_url=os.environ["OllAMA_BASE_URL"],
             ),
         ).as_retriever()
         answers = retriever.get_relevant_documents(ask, top_k=4)
