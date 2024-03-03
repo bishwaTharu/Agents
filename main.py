@@ -11,7 +11,6 @@ class FinancialCrew:
     def run(self):
         agents = StockAnalysisAgents()
         tasks = StockAnalysisTasks()
-
         research_analyst_agent = agents.research_analyst()
         financial_analyst_agent = agents.financial_analyst()
         investment_advisor_agent = agents.investment_advisor()
