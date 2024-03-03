@@ -26,7 +26,7 @@ class StockAnalysisAgents:
                 SECTools.search_10q,
                 SECTools.search_10k,
             ],
-            llm=Ollama(model="openhermes", base_url=os.environ["Ollama_BASE_URL"]),
+            llm=Ollama(model="openhermes", base_url=os.getenv("OllAMA_BASE_URL")),
         )
 
     def research_analyst(self):
@@ -47,6 +47,7 @@ class StockAnalysisAgents:
                 SECTools.search_10q,
                 SECTools.search_10k,
             ],
+            llm=Ollama(model="openhermes", base_url=os.getenv("OllAMA_BASE_URL")),
         )
 
     def investment_advisor(self):
@@ -66,4 +67,5 @@ class StockAnalysisAgents:
                 CalculatorTools.calculate,
                 YahooFinanceNewsTool(),
             ],
+            llm=Ollama(model="openhermes", base_url=os.getenv("OllAMA_BASE_URL")),
         )
