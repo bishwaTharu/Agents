@@ -3,9 +3,9 @@ from textwrap import dedent
 from stock_analysis_agent import StockAnalysisAgents
 from stock_analysis_tasks import StockAnalysisTasks
 
-from dotenv import load_dotenv
+from langchain_community.llms import Ollama
+import os
 
-load_dotenv()
 
 
 class FinancialCrew:
