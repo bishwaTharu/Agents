@@ -4,9 +4,11 @@ from stock_analysis.tools.browser_tools import BrowserTools
 from stock_analysis.tools.calculator_tools import CalculatorTools
 from stock_analysis.tools.search_tools import SearchTools
 from stock_analysis.tools.sec_tools import SECTools
-
 from langchain.tools.yahoo_finance_news import YahooFinanceNewsTool
 from langchain_community.llms import Ollama
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 
 class StockAnalysisAgents:
