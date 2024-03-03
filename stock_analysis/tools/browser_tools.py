@@ -5,6 +5,7 @@ import requests
 from crewai import Agent, Task
 from langchain.tools import tool
 from unstructured.partition.html import partition_html
+from langchain.tools import DuckDuckGoSearchRun
 
 
 class BrowserTools:
@@ -33,4 +34,26 @@ class BrowserTools:
             )
             summary = task.execute()
             summaries.append(summary)
+        return "\n\n".join(summaries)
+
+
+class DuckduckGoSearch:
+    @tool("Search the result in duckduckgo")
+    def WebSearch():
+        search_tool = DuckDuckGoSearchRun()
+        agent = Agent(
+            role="Principal Researcher",
+            goal="Do amazing research and summaries based on the content you are working with",
+            backstory="You're a Principal Researcher at a big company and you need to do research about a given topic.",
+            allow_delegation=False,
+        )
+        summaries = []
+
+        task = Task(
+            agent=agent,
+            description=f"Analyze and summarize the content below, make sure to include the most relevant information in the summary, return only the summary nothing else.\n\nCONTENT\n----------\n{search_tool}",
+        )
+        summary = task.execute()
+        summaries.append(summary)
+
         return "\n\n".join(summaries)

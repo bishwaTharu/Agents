@@ -1,6 +1,7 @@
 import os
 from crewai import Agent
-from stock_analysis.tools.browser_tools import BrowserTools
+from stock_analysis.tools.browser_tools import BrowserTools, DuckduckGoSearch
+
 from stock_analysis.tools.calculator_tools import CalculatorTools
 from stock_analysis.tools.search_tools import SearchTools
 from stock_analysis.tools.sec_tools import SECTools
@@ -22,7 +23,7 @@ class StockAnalysisAgents:
       strategies that is working for a super important customer.""",
             verbose=True,
             tools=[
-                BrowserTools.scrape_and_summarize_website,
+                DuckduckGoSearch.WebSearch,
                 SearchTools.search_internet,
                 CalculatorTools.calculate,
                 SECTools.search_10q,
