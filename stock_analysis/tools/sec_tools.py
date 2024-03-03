@@ -1,10 +1,8 @@
 import os
-
 import requests
-
 from langchain.tools import tool
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 
 from sec_api import QueryApi
@@ -76,7 +74,12 @@ class SECTools:
             is_separator_regex=False,
         )
         docs = text_splitter.create_documents([content])
-        retriever = FAISS.from_documents(docs, OpenAIEmbeddings()).as_retriever()
+        retriever = FAISS.from_documents(
+            docs,
+            OllamaEmbeddings(
+                model="openharnes", base_url=os.environ["OllAMA_BASE_URL"]
+            ),
+        ).as_retriever()
         answers = retriever.get_relevant_documents(ask, top_k=4)
         answers = "\n\n".join([a.page_content for a in answers])
         return answers
