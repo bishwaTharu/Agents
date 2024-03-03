@@ -17,7 +17,6 @@ sec-api = "1.0.17"
 tiktoken = "0.5.2"
 faiss-cpu = "1.7.4"
 python-dotenv = "1.0.0"
-langchain_community = "0.0.10"
 langchain-core = "0.1.8"
 
 [tool.pyright]
